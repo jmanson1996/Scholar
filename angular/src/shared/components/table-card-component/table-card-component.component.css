@@ -1,0 +1,13 @@
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .card-img-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  h1.display-1 {
+    font-size: 4rem;
+  }

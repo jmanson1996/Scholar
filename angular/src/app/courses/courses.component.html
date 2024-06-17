@@ -1,0 +1,34 @@
+<div [@routerTransition]>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <h1>{{ "NewCourse" | localize }}</h1>
+                </div>
+                <div class="col-6 text-right">
+                    <a href="javascript:;" class="btn bg-blue" (click)="createUser()">
+                        <i class="fa fa-plus-square"></i>
+                        {{ "Create" | localize }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <table-card-component
+                        [data]="courses"
+                        [columns]="columns"
+                        [totalItems]="totalCourses"
+                        [pageSize]="pageSize"
+                        [currentPage]="currentPage"
+                        [baseRoute]="'/app/profileCourse/'"
+                        [loadPage]="loadCourses.bind(this)">
+                    </table-card-component>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

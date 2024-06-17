@@ -1,0 +1,80 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCourseModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'ViewTask' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="card">
+        <div class="card-header text-white bg-info">
+            <h5 class="card-title"> {{ taskView.title }} </h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text"> {{ taskView.description }} </p>
+            <hr>
+            <div class="form-group row required">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Calificación</th>
+                    <th>Comentario</th>
+                    <th>Entregado/No Entregado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of taskStudent; let i = index">
+                    <td>{{ student.fullName | uppercase }}</td>
+                    <td>
+                      <input type="number"
+                             class="form-control"
+                             required
+                             min="1"
+                             max="10"
+                             step="0.1"
+                             [(ngModel)]="student.qualification"
+                             name="qualification{{i}}">
+                    </td>
+                    <td>
+                      <input type="text"
+                             class="form-control"
+                             minlength="2"
+                             maxlength="200"
+                             [(ngModel)]="student.comment"
+                             #commentModel="ngModel"
+                             #commentNameEl
+                             name="comment{{i}}">
+                      <abp-validation-summary
+                             [control]="commentModel"
+                             [controlEl]="commentNameEl"
+                      ></abp-validation-summary>
+                    </td>
+                    <td>
+                      <input type="checkbox"
+                             class="form-control"
+                             [(ngModel)]="student.status"
+                             #statusModel="ngModel"
+                             #statusNameEl
+                             name="status{{i}}">
+                      <abp-validation-summary
+                             [control]="statusModel"
+                             [controlEl]="statusNameEl"
+                      ></abp-validation-summary>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCourseModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

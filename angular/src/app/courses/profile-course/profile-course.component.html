@@ -1,0 +1,115 @@
+<section class="content-header">
+    <div class="container-fluid" bis_skin_checked="1">
+        <div class="row mb-2" bis_skin_checked="1">
+            <div class="col-sm-6" bis_skin_checked="1">
+                <h1> <strong>Curso:</strong> {{ course.result.name }}</h1>
+            </div>
+            <div class="col-sm-6" bis_skin_checked="1">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a class="btn btn-primary" [routerLink]="['/app/courses']">Regresar</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid" bis_skin_checked="1">
+        <div class="row" bis_skin_checked="1">
+            <div class="col-md-3" bis_skin_checked="1">
+                <div class="card card-primary card-outline" bis_skin_checked="1">
+                    <div class="card-body box-profile" bis_skin_checked="1">
+                      <div class="text-center m-2" bis_skin_checked="1">
+                        <img class="profile-user-img img-fluid img-circle" src="../../../assets/img/logoSchol.jpg" alt="User profile picture">
+                      </div>
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <strong>Profesor: </strong> <a class="float-right"> {{ user.result.fullName }} </a>
+                            </li>
+                            <li class="list-group-item">
+                                <strong># Máximo de Estudiantes: </strong> <a class="float-right"> {{ course.result.maxStudents }} </a>
+                            </li>
+                            <li class="list-group-item">
+                                <strong># Minimo de Estudiantes: </strong> <a class="float-right"> {{ course.result.minStudents }} </a>
+                            </li>
+                            <li class="list-group-item">
+                              <strong>Duración: </strong> <a class="float-right"> {{ course.result.duration }} meses.</a>
+                          </li>
+                        </ul>
+                        <a href="javascript:;" class="btn btn-primary btn-block" (click)="editCourse()">
+                          <i class="fa fa-plus-square"></i>
+                          {{ "Edit" | localize }}
+                        </a>
+                        <a href="javascript:;" class="btn btn-danger btn-block" (click)="delete()">
+                          <i class="fa fa-eraser"></i>
+                          {{ "Delete" | localize }}
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="card card-primary" bis_skin_checked="1">
+                    <div class="card-header" bis_skin_checked="1">
+                        <h3 class="card-title">Información: </h3>
+                    </div>
+
+                    <div class="card-body" bis_skin_checked="1">
+                        <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                        <p class="text-muted">
+                            {{ course.result.description }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item">
+                        <a
+                          class="nav-link"
+                          [ngClass]="{ 'active': currentTab === 'estudiantesTab' }"
+                          (click)="selectTab('estudiantesTab')"
+                          >
+                          Estudiantes
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          class="nav-link"
+                          [ngClass]="{ 'active': currentTab === 'tareasTab' }"
+                          (click)="selectTab('tareasTab')"
+                          >
+                          Tareas
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          class="nav-link"
+                          [ngClass]="{ 'active': currentTab === 'asistenciasTab' }"
+                          (click)="selectTab('asistenciasTab')"
+                          >
+                          Asistencia
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'estudiantesTab' }" id="estudiantesTab">
+                        <app-estudiantes-tab [idCourse]="this.idCourse"></app-estudiantes-tab>
+                      </div>
+                      <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'tareasTab' }" id="tareasTab">
+                        <app-tareas-tab [idCourse]="this.idCourse"></app-tareas-tab>
+                      </div>
+                      <div class="tab-pane" [ngClass]="{ 'active': currentTab === 'asistenciasTab' }" id="asistenciasTab">
+                        <app-asistencias-tab [idCourse]="this.idCourse"></app-asistencias-tab>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</section>

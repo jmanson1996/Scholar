@@ -1,0 +1,41 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCourseModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewStudent' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "Student" | localize }}
+      </label>
+      <div class="col-md-9">
+        <select
+        class="form-control"
+        name="idUser"
+        id="idUser"
+        required
+        [(ngModel)]="create.idUser"
+        #nameModel="ngModel"
+        #nameEl
+      >
+        <option *ngFor="let students of student.result" [value]="students.id">
+          {{ students.fullName | uppercase}}
+        </option>
+      </select>
+      <div *ngIf="create.idUser === 0" class="alert alert-danger mt-2">
+          Please select a course.
+      </div>
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCourseModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

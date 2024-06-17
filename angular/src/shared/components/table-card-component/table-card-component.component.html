@@ -1,0 +1,46 @@
+<div class="mt-2 ml-0 mr-0">
+  <div class="row" *ngFor="let group of groupColumns(data, 2)">
+    <div class="col-md-6 mb-4" *ngFor="let item of group">
+      <a [routerLink]="[baseRoute, item['id']]" class="text-dark">
+        <!-- <div class="card">
+          <img
+            src="assets/img/calendario-escolar.jpg"
+            alt="Logo"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item[columns[0].field] }}</h5>
+            <div *ngFor="let col of columns">
+              @if(col.header === "Description"){
+                <p class="card-text">{{ item[col.field] }}</p>
+              }
+            </div>
+          </div>
+        </div> -->
+
+        <div class="card bg-dark text-white text-center">
+          <img src="https://i.pinimg.com/736x/8d/5a/d2/8d5ad21ed57628ff80eb19685dd61978.jpg" class="card-img" style="max-height: 400px!important;" alt="Background">
+          <div class="card-img-overlay d-flex flex-column justify-content-center">
+            <!-- <h5 class="card-title">Clear night</h5>
+            <p class="card-text">Dhaka, Bangladesh</p> -->
+            <h1 class="display-1">{{ item[columns[0].field] }}<sup>o</sup>C</h1>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="previousPage()">Anterior</button>
+      </li>
+      <li class="page-item">
+        <span class="page-link">Página {{ currentPage }}</span>
+      </li>
+      <li class="page-item" [class.disabled]="!hasMoreItems">
+        <button class="page-link" (click)="nextPage()">Siguiente</button>
+      </li>
+    </ul>
+  </nav>
+</div>

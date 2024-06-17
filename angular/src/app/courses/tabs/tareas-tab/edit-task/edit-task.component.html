@@ -1,0 +1,80 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCourseModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewTask' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="title">
+        {{ "Title" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          id="title"
+          required
+          minlength="2"
+          maxlength="32"
+          [(ngModel)]="create.title"
+          #titleModel="ngModel"
+          #titleEl
+        />
+        <abp-validation-summary
+          [control]="titleModel"
+          [controlEl]="titleEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="description">
+        {{ "Description" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          id="description"
+          required
+          minlength="2"
+          maxlength="100"
+          [(ngModel)]="create.description"
+          #descriptionModel="ngModel"
+          #descriptionEl
+        />
+        <abp-validation-summary
+          [control]="descriptionModel"
+          [controlEl]="descriptionEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <!-- FECHA DATAPICKER -->
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="date">
+        {{ "DeliveryDate" | localize }}
+      </label>
+      <div class="col-md-9">
+        <mat-form-field class="full-width" appearance="">
+          <input matInput class="form-control" [matDatepicker]="picker"  [(ngModel)]="create.deliveryDate" id="deliveryDate" name="deliveryDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCourseModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

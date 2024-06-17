@@ -1,0 +1,14 @@
+﻿using Abp.Application.Services.Dto;
+using Schola.Materiales;
+
+namespace Schola.Material.Dto
+{
+    public class MaterialViewDto : EntityDto
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public MaterialType MaterialType { get; set; }
+        public string? Url { get; set; }
+        public int CourseId { get; set; }
+    }
+}

@@ -1,0 +1,14 @@
+#pdfTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #pdfTable th, #pdfTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  #pdfTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+  }

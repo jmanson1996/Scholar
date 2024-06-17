@@ -1,0 +1,42 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCourseModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewAssistance' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-header text-white bg-info"><h5 class="card-title">Fecha: {{ dateCurrent }} </h5></div>
+      <div class="card-body">
+        <div class="form-group row required">
+          <div class="text-left m-2"></div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Asistencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of studentsCreate ; let i = index">
+                <td>{{ student.fullName | uppercase}}</td>
+                <td>
+                  <input type="checkbox" class="form-control" [(ngModel)]="student.isPresent" name="attendance{{i}}">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCourseModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

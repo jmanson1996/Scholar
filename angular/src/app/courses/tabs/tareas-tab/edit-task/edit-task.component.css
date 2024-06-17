@@ -1,0 +1,15 @@
+.full-width {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 0;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    border-width: 1px;
+  }

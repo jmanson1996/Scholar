@@ -1,0 +1,111 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createCourseModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewUser' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "NameClass" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="nameClass"
+          id="nameClass"
+          required
+          maxlength="32"
+          [(ngModel)]="course.name"
+          #nameModel="ngModel"
+          #nameEl
+        />
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="surname">
+        {{ "descriptionClass" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="descriptionClass"
+          id="descriptionClass"
+          required
+          maxlength="200"
+          [(ngModel)]="course.description"
+          #surnameModel="ngModel"
+          #surnameEl
+        />
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="surname">
+        {{ "durationClass" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="number"
+          class="form-control"
+          name="durationClass"
+          id="durationClass"
+          required
+          [(ngModel)]="course.duration"
+          #surnameModel="ngModel"
+          #surnameEl
+        />
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="surname">
+        {{ "maxStudentsClass" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="maxStudentsClass"
+          id="maxStudentsClass"
+          required
+          maxlength="32"
+          [(ngModel)]="course.maxStudents"
+          #surnameModel="ngModel"
+          #surnameEl
+        />
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="surname">
+        {{ "minStudentsClass" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="minStudentsClass"
+          id="minStudentsClass"
+          required
+          maxlength="32"
+          [(ngModel)]="course.minStudents"
+          #surnameModel="ngModel"
+          #surnameEl
+        />
+      </div>
+    </div>
+
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createCourseModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
